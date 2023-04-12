@@ -25,9 +25,9 @@ async function downAllMp3(array) {
       httpRequestOptions: {}, // Override the http request options
       httpsRequestOptions: {}, // Override the https request options, ex: to add SSL Certs
     };
-    let data = await JSON.stringify(dataRaw);
+    let data = JSON.stringify(dataRaw);
     let url = array[i].linkMP3;
-    const dl = new DownloaderHelper(url, "./mp3TitlesFormat", {
+    const dl = new DownloaderHelper(url, "./mp3Files", {
       method: "GET",
       body: data,
       headers: {
@@ -56,6 +56,5 @@ async function saveToJson(array) {
 
 async function main() {
   await downAllMp3(outputArrayCopy).then((result) => saveToJson(result));
-  // await saveToJson(outputArrayCopy);
 }
 main();
